@@ -35,7 +35,7 @@
 **ディレクトリ構成**
 
 ```
-ROOT
+root
 ├── _src
 │  　├── img →                      ページ毎
 │  　├── js →                       ページ毎
@@ -56,8 +56,8 @@ ROOT
 │
 ├── src
 │   　├── img →                      XXXX_00.png, YYYY_00.svg（圧縮済）
-│   　├── js →                       XXXX.min.js, YYYY.min.js
-│   　├── css →                      XXXX.min.css, YYYY.min.css
+│   　├── js →                       XXXX.min.js, global.min.js（共通js）
+│   　├── css →                      XXXX.min.css
 │   　└── lib →                      jQuery等 ライブラリ関連
 │
 │　↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
@@ -73,8 +73,8 @@ ROOT
 
 **利用方法**
 
-1.ソースコードをgitHubから`clone`<br>
-2.ROOT直下で`npm install`
+1.ソースコードをgithubから`clone`<br>
+2.root直下で`npm install`
 
 ---
 
@@ -113,14 +113,13 @@ ROOT
 
 ## ファイル名 命名規則
 
-**css**
+**css**<br>
 `上部ディレクトリ構成`参照
 
-**Javascript**
+**Javascript**<br>
 `/_src/js/page/{ページタイトル}.js`
 
-**img**
+**img**<br>
 `/_src/img/{Block名}_XX.png`
 
 ※ XXは上から連番、{Block名}は **c-sample** みたいなやつ
-
