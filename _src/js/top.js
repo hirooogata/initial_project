@@ -1,4 +1,7 @@
+'use strict';
 
-$('#js-example').on('click', function() {
-    // 処理
-});
+console.log("top");
+
+// $('#js-example').on('click', function() {
+//     // 処理
+// });
