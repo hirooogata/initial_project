@@ -38,7 +38,7 @@
 ROOT
 ├── _src
 │  　├── img
-│  　│  　　├── component →          サイト内で３回以上使われるパーツ（ボタンなど）
+│  　│　　　├── component →          サイト内で３回以上使われるパーツ（ボタンなど）
 │  　│　　　├── global →             全ページで使われるパーツ（ヘッダー等）
 │  　│　　　└── page →               ページ毎
 │  　│
@@ -60,7 +60,7 @@ ROOT
 │　↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 │
 └── src
-   　└── img →                      XXXX_00.png, YYYY_00.jpg, ZZZZ_00.svg（圧縮済）
+   　├── img →                      XXXX_00.png, YYYY_00.jpg, ZZZZ_00.svg（圧縮済）
    　├── js →                       XXXX.min.js, YYYY.min.js
    　├── css →                      XXXX.min.css, YYYY.min.css
    　└── lib →                      jQuery等 ライブラリ関連
@@ -110,5 +110,5 @@ ROOT
 **img**
 `/_src/img/{Block名}_XX.png`
 
-※ XXは上から連番、{Block名}は **c-more** みたいなやつ
+※ XXは上から連番、{Block名}は **c-sample** みたいなやつ
 
