@@ -90,8 +90,7 @@ ROOT
 ////////// 便利なスタイル
 @import "./../utility/*.scss";
 ```
-> Foundation → Layout → Object → Utility
-<br>
+> Foundation → Layout → Object → Utility |
 > 土台 → レイアウト → パーツ → 便利クラスの順
 
 ## CSSクラス名 命名規則（MindBEMding）
