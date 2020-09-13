@@ -10,14 +10,14 @@
 → 採用を考えている応募者に魅力的な企業に見えない<br>
 → リクエスト数が上がり表示速度が低下しやすい<br>
 → SEOでの検索順位が上がりずらい<br>
-→ 離脱率が上がりやすい
+→ ページ離脱率が上がりやすい
 
 **つまり..？**
 
 サイト設計は売上の土台となる重要なパートであり
 長く運用していくサイトでは最低限の設計をしておくべき:star:
 
-## CSS 設計
+## CSS 設計（FLOCSSを改良）
 
 **各レイヤーの役割**
 | 接頭辞 | レイヤー | 詳細ディレクトリ | 役割 |例 |
@@ -29,7 +29,7 @@
 | - | Object    | **page**     | ページ毎    | トップページ、マイページ     |
 | **.u-** **.is-** | **Utility**     | -     | 便利クラス、状態クラス     | SP非表示、ボタンON状態等     |
 
-> component、globalレイヤーについては <font color="Red">**CSSクラス名(.c-more{}) == ファイル名(c-more.scss)**</font> （イコール）
+> component、globalレイヤーについては <font color="red">**CSSクラス名(.c-more{}) == ファイル名(c-more.scss)**</font> （イコール）
 > 
 ---
 **ディレクトリ構成**
@@ -37,13 +37,8 @@
 ```
 ROOT
 ├── _src
-│  　├── img
-│  　│　　　├── component →          サイト内で３回以上使われるパーツ（ボタンなど）
-│  　│　　　├── global →             全ページで使われるパーツ（ヘッダー等）
-│  　│　　　└── page →               ページ毎
-│  　│
+│  　├── img →                      ページ毎
 │  　├── js →                       ページ毎
-│  　│
 │  　└── scss 
 │  　  　 　├── export →             出力用
 │  　  　 　├── import →             変数（_variables.scss）、関数（_mixin.scss）
@@ -56,16 +51,33 @@ ROOT
 │  　  　 　  　   　└── page →      ページ毎
 │
 │　↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-│　↓↓↓↓↓↓↓↓↓↓↓　ファイルを更新すると自動ビルド ↓↓↓↓↓↓↓↓↓↓↓
+│　↓↓↓↓↓↓↓ ファイルを更新するとsrc配下に自動ビルド ↓↓↓↓↓↓↓↓↓
 │　↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 │
-└── src
-   　├── img →                      XXXX_00.png, YYYY_00.jpg, ZZZZ_00.svg（圧縮済）
-   　├── js →                       XXXX.min.js, YYYY.min.js
-   　├── css →                      XXXX.min.css, YYYY.min.css
-   　└── lib →                      jQuery等 ライブラリ関連
+├── src
+│   　├── img →                      XXXX_00.png, YYYY_00.svg（圧縮済）
+│   　├── js →                       XXXX.min.js, YYYY.min.js
+│   　├── css →                      XXXX.min.css, YYYY.min.css
+│   　└── lib →                      jQuery等 ライブラリ関連
+│
+│　↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+│　↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+│
+├── gulpfile.js →                    ビルド処理本体
+├── pacage.json →                    パッケージマネージャー
+├── pacage-lock.json →               npm install時に完全に同じ環境を構築するため
+└── top.html →                       初期HTML
 ```
+
 ---
+
+**利用方法**
+
+1.ソースコードをgitHubから`clone`<br>
+2.ROOT直下で`npm install`
+
+---
+
 **レイヤーの読み込み順序（export 配下にファイルがあります）**
 
 ```:\_src\scss\export\top.scss
@@ -90,19 +102,19 @@ ROOT
 ////////// 便利なスタイル
 @import "./../utility/*.scss";
 ```
-> Foundation → Layout → Object → Utility |
-> 土台 → レイアウト → パーツ → 便利クラスの順
+> Foundation → Layout → Object → Utility
+> | 土台 → レイアウト → パーツ → 便利クラスの順
 
 ## CSSクラス名 命名規則（MindBEMding）
 [BEMのチートシート](https://9elements.com/bem-cheat-sheet/)
 
-> 通称BEM（Block Element Modifier）といいます。
-> 上記URLを見ればBEMについて理解できます。
+> BEM（Block Element Modifier）。
+> 上記URLはBEMのチートシートです。
 
 ## ファイル名 命名規則
 
 **css**
-`ディレクトリ構成参照`
+`上部ディレクトリ構成`参照
 
 **Javascript**
 `/_src/js/page/{ページタイトル}.js`
