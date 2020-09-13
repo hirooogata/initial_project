@@ -91,6 +91,7 @@ ROOT
 @import "./../utility/*.scss";
 ```
 > Foundation → Layout → Object → Utility
+<br>
 > 土台 → レイアウト → パーツ → 便利クラスの順
 
 ## CSSクラス名 命名規則（MindBEMding）
