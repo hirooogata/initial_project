@@ -38,7 +38,7 @@
 root
 ├── _src
 │  　├── img →                      ページ毎
-│  　├── js →                       ページ毎
+│  　├── js →                       ページ毎、全ページ共通js（global.js）
 │  　└── scss 
 │  　  　 　├── export →             出力用
 │  　  　 　├── import →             変数（_variables.scss）、関数（_mixin.scss）
