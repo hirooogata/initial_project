@@ -26,8 +26,8 @@
 | -------- | -------- | -------- | -------- | -------- |
 | - | **Foundation**    | -     | 土台     | リセット、ベース     |
 | **.l-** | **Layout**     | -     | レイアウト     | サイドバー、ヘッダー    |
-| **.c-** | Object     | **component**     | 再利用可能なコンポーネント     | [ボタン、タイトル等](XXXXX)     |
-| **.g-**| Object     | **global**      | 共通パーツ     | [ヘッダー、フッダー等](XXXXX)    |
+| **.c-** | Object     | **component**     | 再利用可能なコンポーネント     | ボタン、タイトル等   |
+| **.g-**| Object     | **global**      | 共通パーツ     | ヘッダー、フッダー等   |
 | - | Object    | **page**     | ページ毎    | トップページ、マイページ     |
 | **.u-** **.is-** | **Utility**     | -     | 便利クラス、状態クラス     | SP非表示、ボタンON状態等     |
 
@@ -92,16 +92,14 @@ ROOT
 ////////// 便利なスタイル
 @import "./../utility/*.scss";
 ```
-> Foundation ? Layout ? Object ? Utility
->土台 ? レイアウト ? パーツ ? 便利クラスの順
-<br>
+> Foundation → Layout → Object → Utility
+> 土台 → レイアウト → パーツ → 便利クラスの順
 
 ## CSSクラス名 命名規則（MindBEMding）
 [BEMのチートシート](https://9elements.com/bem-cheat-sheet/)
 
 > 通称BEM（Block Element Modifier）といいます。
 > 上記URLを見ればBEMについて理解できます。
-<br>
 
 ## ファイル名 命名規則
 
