@@ -1,0 +1,32 @@
+@charset "utf-8";
+@import "./../import/mixin";
+
+html {
+	font-family: "Montserrat", "Noto Sans JP", sans-serif;
+    font-weight: 500;
+	body {
+		font-family: "Font Awesome 5 Free","Font Awesome 5 Brands";
+	}
+	body, form {
+		margin: 0;
+		padding: 0;
+	}
+	img {
+		user-select: none;
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+		pointer-events: none;
+		max-width: 100%;
+	}
+	a {
+    color: #000;
+	text-decoration: none;
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
+	cursor: pointer;
+		&:hover {
+			color: #3d83a5;
+		}
+	}
+}
+

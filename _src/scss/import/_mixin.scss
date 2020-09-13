@@ -1,0 +1,65 @@
+@charset "utf-8";
+@import "variables";
+
+//---------- フォント ----------
+@mixin fontPc($fontSize, $fontColor, $fontWeight, $baseSize: 16, $fontColor: false, $fontWeight: false) {
+  font-size: ($fontSize / $baseSize) + rem;
+  @if $fontWeight=='bold' {
+    font-weight: bold;
+  }
+  @if $fontColor!=false {
+    color: $fontColor;
+  }
+}
+@mixin fontSp($fontSize, $fontColor, $fontWeight, $baseSize: 16, $fontColor: false, $fontWeight: false) {
+  font-size: getVw($fontSize);
+  @if $fontWeight=='bold' {
+    font-weight: bold;
+  }
+  @if $fontColor!=false {
+    color: $fontColor;
+  }
+}
+@function getVw($fontSize, $viewport: 420) {
+  $rate: 100 / $viewport;
+  @return $rate * $fontSize * 1vw;
+}
+
+//---------- absolute ----------
+@mixin positionAbsolute($top: auto, $right: auto, $bottom: auto, $left: auto) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+//---------- ellipsis ----------
+@mixin ellipsis($lineNum) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lineNum;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+//---------- opacity ----------
+@mixin opacity($opacity) {
+  $opacityIE: $opacity * 100;
+  opacity: $opacity;
+  filter: alpha(opacity=$opacityIE);
+  -ms-filter: alpha(opacity=$opacityIE);
+}
+
+//---------- circle ----------
+@mixin circle($size) {
+  width: $size + px;
+  height: $size + px;
+  border-radius: 50%;
+}
+
+//---------- PC ----------
+@mixin mediaSp {
+  @media screen and (max-width: $breakPointPC) {
+    @content;
+  }
+}

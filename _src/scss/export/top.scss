@@ -1,0 +1,21 @@
+////////// foundation層 //////////
+////////// 土台となるスタイル
+@import "./../foundation/reset.scss";
+@import "./../foundation/base.scss";
+
+////////// layout層 //////////
+////////// レイアウトを決めるスタイル
+@import "./../layout/*.scss";
+
+////////// object層 //////////
+////////// 共通パーツのスタイル
+@import "./../object/component/*.scss";
+@import "./../object/global/*.scss";
+@import "./../object/page/top_pc.scss";
+@import "./../object/page/top_sp.scss";
+
+////////// utility層 //////////
+////////// 便利なスタイル
+@import "./../utility/*.scss";
+
+

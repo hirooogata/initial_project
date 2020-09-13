@@ -1,0 +1,13 @@
+@charset "utf-8";
+
+//---------- u-utility ----------
+@media screen and (min-width: 768px){
+	.u-sp {
+		display: none !important;
+	}
+}
+@media screen and (max-width: 767px){
+	.u-pc {
+		display: none !important;
+	}
+}
