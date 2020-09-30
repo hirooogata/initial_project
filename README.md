@@ -46,9 +46,9 @@ root
 │  　  　 　├── layout →             レイアウト（l-XXXX.scss）
 │  　  　 　├── utility →            ユーティリティ（u-XXXX.scss）
 │  　  　 　└── object 
-│  　  　 　  　   　├── component → 共通パーツ（サイト内で３回以上使われるボタンなど）
-│  　  　 　  　   　├── global →    共通パーツ（全ページで使われるヘッダー等）
-│  　  　 　  　   　└── page →      ページ毎
+│  　  　 　  　   　├── component → 共通パーツ（サイト内で３回以上使われるボタンなど）（c-XXXX.scss）
+│  　  　 　  　   　├── global →    共通パーツ（全ページで使われるヘッダー等）（g-XXXX.scss）
+│  　  　 　  　   　└── page →      ページ毎（XXXX.scss）
 │
 │　↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 │　↓↓↓↓↓↓↓ ファイルを更新するとsrc配下に自動ビルド ↓↓↓↓↓↓↓↓↓
@@ -73,7 +73,7 @@ root
 
 **利用方法**
 
-1.ソースコードをgithubから`clone`<br>
+1.ソースコードをgithubから`git clone`<br>
 2.root直下で`npm install`
 
 ---
