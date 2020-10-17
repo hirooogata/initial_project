@@ -56,7 +56,7 @@
 root
 ├── _src
 │  　├── img →                      ページ毎
-│  　├── js →                       ページ毎、全ページ共通js（common.js）
+│  　├── js ── es2015 →             ページ毎、全ページ共通js（common.js）
 │  　└── scss 
 │  　  　 　├── foundation →         土台（base.scss）、リセット（reset.scss）
 │  　  　 　├── layout →             レイアウト（l-xxxx.scss）
