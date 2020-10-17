@@ -48,9 +48,6 @@
 | - | Object    | **page**     | ページ毎    | トップページ、マイページ     |
 | **.u-** **.is-** | Object    | **Utility**    | 便利クラス、状態クラス     | SP非表示、ボタンON状態等     |
 
-> component、globalレイヤーについては <font color="red">**CSSクラス名(.c-more{}) == ファイル名(c-more.scss)**</font> （イコール）
-> 
-
 <br />
 
 ---
