@@ -15,6 +15,7 @@ const pngquant = require('imagemin-pngquant');
 const plumber = require('gulp-plumber');
 const bulkSass = require('gulp-sass-bulk-import');
 const browserSync = require('browser-sync'); 
+const babel = require("gulp-babel");
 const cssPlugin = [
   autoprefixer({cascade: false}),
   cssDeclarationSorter({order: 'smacss'}),
@@ -26,6 +27,7 @@ const editDirectory = {
   html: './',
   scss: './_src/scss/**/',
   js: './_src/js/',
+  es: './_src/js/es2015/',
   img: './_src/img/'
 }
 const destDirectory = {
@@ -35,7 +37,7 @@ const destDirectory = {
   img: './src/img/'
 }
 
-/*---------- scss圧縮 ----------*/
+/*---------- scss ----------*/
 gulp.task('css.compile', function () {
   return gulp.src('./_src/scss/export/*.scss')
   .pipe(bulkSass())
@@ -53,16 +55,25 @@ gulp.task('css.minify', function () {
   .pipe(gulp.dest(destDirectory.minifyCss));
 });
 
-/*---------- js圧縮 ----------*/
-gulp.task('js.minify', function() {
-  return gulp.src(editDirectory.js + '*.js')
-  .pipe(plumber())
-  .pipe(uglify({output: {comments: 'some'}}))
-  .pipe(rename({extname: '.min.js'}))
-  .pipe(gulp.dest(destDirectory.js));
+/*---------- js ----------*/
+// gulp.task('js.minify', function() {
+//   return gulp.src(editDirectory.js + '*.js')
+//   .pipe(plumber())
+//   .pipe(uglify({output: {comments: 'some'}}))
+//   .pipe(rename({extname: '.min.js'}))
+//   .pipe(gulp.dest(destDirectory.js));
+// });
+gulp.task('js.babel', function(done) {
+  gulp.src(editDirectory.js + 'es2015/*.js')
+    .pipe(plumber())
+    .pipe(babel())
+    .pipe(rename({extname: '.min.js'}))
+    .pipe(uglify({output: {comments: 'some'}}))
+    .pipe(gulp.dest(destDirectory.js));
+    done();
 });
 
-/*---------- img圧縮 ----------*/
+/*---------- img ----------*/
 gulp.task('img.minify', function() {
   gulp.src([editDirectory.img + '*.png', editDirectory.img + '*.jpg'])
   .pipe(imagemin([pngquant({quality: [0.6, 0.9]})]))
@@ -72,7 +83,7 @@ gulp.task('img.minify', function() {
   .pipe(gulp.dest(destDirectory.img));
 });
 
-/*---------- browser同期 ----------*/
+/*---------- sync ----------*/
 gulp.task('browser.sync', function(done) {
   browserSync.init({
       server : {baseDir : './', index : 'top.html'}
@@ -80,23 +91,24 @@ gulp.task('browser.sync', function(done) {
   done();
 });
 
-/*---------- browser更新 ----------*/
+/*---------- reload ----------*/
 gulp.task('browser.reload', function(done) {
   browserSync.reload();
   done();
 });
 
-/*---------- files監視 ----------*/
+/*---------- watch ----------*/
 gulp.task('files.watch', function(done) {
   gulp.watch([editDirectory.html + '*.html'], gulp.series('browser.reload'));
   gulp.watch([editDirectory.scss + '*.scss', './_src/scss/*.scss'], gulp.series('css.compile', 'css.minify',  'browser.reload'));
-  gulp.watch([editDirectory.js + '*.js'], gulp.series('js.minify', 'browser.reload'));
+  // gulp.watch([editDirectory.js + '*.js'], gulp.series('js.minify', 'browser.reload'));
+  gulp.watch([editDirectory.es + '*.js'], gulp.series('js.babel', 'browser.reload'));
   gulp.watch([editDirectory.img + '*.png', editDirectory.img + '*.jpg', editDirectory.img + '*.svg'], gulp.series('img.minify', 'browser.reload'));
   done();
 });
 
 /*---------- default ----------*/
-gulp.task('default', gulp.series('css.compile', 'css.minify', 'js.minify',
+gulp.task('default', gulp.series('css.compile', 'css.minify', 'js.babel', 
   gulp.parallel('files.watch', 'browser.sync'), function(done) {
     done();
   })
