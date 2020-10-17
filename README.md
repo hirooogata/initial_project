@@ -75,7 +75,7 @@
 root
 ├── _src
 │  　├── img →                      ページ毎
-│  　├── js ── es2015 →             ページ毎、全ページ共通js（common.js）
+│  　├── js ── es2015 →             ページ毎
 │  　└── scss 
 │  　  　 　├── foundation →         土台（base.scss）、リセット（reset.scss）
 │  　  　 　├── layout →             レイアウト（l-xxxx.scss）
@@ -94,7 +94,7 @@ root
 │
 ├── src
 │   　├── img →                      xxxx_zz.png, yyyy_zz.svg（圧縮済）
-│   　├── js →                       xxxx.min.js, common.min.js（共通js）
+│   　├── js →                       xxxx.min.js
 │   　├── css →                      xxxx.min.css
 │   　└── lib →                      jQuery等 ライブラリ関連
 │
