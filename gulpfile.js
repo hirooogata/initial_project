@@ -36,14 +36,14 @@ const destDirectory = {
 }
 
 /*---------- scss圧縮 ----------*/
-gulp.task("css.compile", function () {
+gulp.task('css.compile', function () {
   return gulp.src('./_src/scss/export/*.scss')
   .pipe(bulkSass())
   .pipe(sass({outputStyle: 'expanded'}))
   .pipe(postcss(cssPlugin))
   .pipe(gulp.dest(destDirectory.css));
 });
-gulp.task("css.minify", function () {
+gulp.task('css.minify', function () {
   return gulp.src('./_src/scss/export/*.scss')
   .pipe(bulkSass())
   .pipe(sass({outputStyle: 'expanded'}))

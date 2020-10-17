@@ -4,9 +4,13 @@
 
 .c-example {
     &__example {
+        &--red {}
     }
-}
+    
 
-@include mediaSp {
-
+    @include mediaSp {
+        &__example {
+            &--red {}
+        }
+    }
 }

@@ -1,7 +1,7 @@
 @charset "utf-8";
 @import "variables";
 
-//---------- フォント ----------
+//---------- font ----------
 @mixin fontPc($fontSize, $fontColor, $fontWeight, $baseSize: 16, $fontColor: false, $fontWeight: false) {
   font-size: ($fontSize / $baseSize) + rem;
   @if $fontWeight=='bold' {
@@ -57,9 +57,9 @@
   border-radius: 50%;
 }
 
-//---------- PC ----------
+//---------- smartphone ----------
 @mixin mediaSp {
-  @media screen and (max-width: $breakPointPC) {
+  @media screen and (max-width: $breakPointPc) {
     @content;
   }
 }

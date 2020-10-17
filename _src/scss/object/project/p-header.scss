@@ -2,10 +2,14 @@
 @import "./../../import/mixin";
 @import "./../../import/variables";
 
-.g-footer {
-}
+.p-header {
+    .c-example {
 
-@include mediaSp {
-    .g-footer {
+    }
+
+    @include mediaSp {
+        .c-example {
+
+        }
     }
 }

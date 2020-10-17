@@ -1,13 +1,13 @@
 @charset "utf-8";
 
-//---------- ブレイクポイント ----------
-$breakPointSP: 767px;
-$breakPointPC: 768px;
+//---------- breakpoint ----------
+$breakPointSp: 767px;
+$breakPointPc: 768px;
 
-//---------- フォント形式 ----------
+//---------- fontfamily ----------
 $fontYu: 游ゴシック体, "Yu Gothic", YuGothic;
 
-//---------- パレット ----------
+//---------- palettes ----------
 $palettes: (
     theme: (
       blue: #195ca5

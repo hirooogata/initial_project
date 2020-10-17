@@ -11,11 +11,8 @@
 ////////// 共通パーツのスタイル
 @import "./../object/component/*.scss";
 @import "./../object/global/*.scss";
-@import "./../object/page/top_pc.scss";
-@import "./../object/page/top_sp.scss";
+@import "./../object/page/top.scss";
 
 ////////// utility層 //////////
 ////////// 便利なスタイル
 @import "./../utility/*.scss";
-
-

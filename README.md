@@ -25,7 +25,7 @@
 | - | **Foundation**    | -     | 土台     | リセット、ベース     |
 | **.l-** | **Layout**     | -     | レイアウト     | サイドバー、ヘッダー    |
 | **.c-** | Object     | **component**     | 再利用可能なコンポーネント     | ボタン、タイトル等   |
-| **.g-**| Object     | **global**      | 共通パーツ     | ヘッダー、フッダー等   |
+| **.p-**| Object     | **projqct**      | componentの組み合わせ     | ヘッダー、フッダー等   |
 | - | Object    | **page**     | ページ毎    | トップページ、マイページ     |
 | **.u-** **.is-** | **Utility**     | -     | 便利クラス、状態クラス     | SP非表示、ボタンON状態等     |
 
@@ -38,26 +38,27 @@
 root
 ├── _src
 │  　├── img →                      ページ毎
-│  　├── js →                       ページ毎、全ページ共通js（global.js）
+│  　├── js →                       ページ毎、全ページ共通js（common.js）
 │  　└── scss 
-│  　  　 　├── export →             出力用
-│  　  　 　├── import →             変数（_variables.scss）、関数（_mixin.scss）
 │  　  　 　├── foundation →         土台（base.scss）、リセット（reset.scss）
-│  　  　 　├── layout →             レイアウト（l-XXXX.scss）
-│  　  　 　├── utility →            ユーティリティ（u-XXXX.scss）
-│  　  　 　└── object 
-│  　  　 　  　   　├── component → 共通パーツ（サイト内で３回以上使われるボタンなど）（c-XXXX.scss）
-│  　  　 　  　   　├── global →    共通パーツ（全ページで使われるヘッダー等）（g-XXXX.scss）
-│  　  　 　  　   　└── page →      ページ毎（XXXX.scss）
+│  　  　 　├── layout →             レイアウト（l-xxxx.scss）
+│  　  　 　├── object 
+│  　  　 　│  　   　├── component → サイト内で３回以上使われる最小限パーツ（c-xxxx.scss）
+│  　  　 　│  　   　├── project →   サイト内で３回以上使われるcomponentの組み合わせ（p-xxxx.scss）
+│  　  　 　│  　   　├── utility →   ユーティリティ（u-xxxx.scss）
+│  　  　 　│  　   　└── page    →   ページ毎（xxxx.scss）
+│  　  　 　│
+│  　  　 　├── import →             変数（_variables.scss）、関数（_mixin.scss）
+│  　  　 　└── export →             出力用
 │
 │　↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 │　↓↓↓↓↓↓↓ ファイルを更新するとsrc配下に自動ビルド ↓↓↓↓↓↓↓↓↓
 │　↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 │
 ├── src
-│   　├── img →                      XXXX_00.png, YYYY_00.svg（圧縮済）
-│   　├── js →                       XXXX.min.js, global.min.js（共通js）
-│   　├── css →                      XXXX.min.css
+│   　├── img →                      xxxx_zz.png, yyyy_zz.svg（圧縮済）
+│   　├── js →                       xxxx.min.js, common.min.js（共通js）
+│   　├── css →                      xxxx.min.css
 │   　└── lib →                      jQuery等 ライブラリ関連
 │
 │　↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
@@ -94,9 +95,8 @@ root
 ////////// object層 //////////
 ////////// 共通パーツのスタイル
 @import "./../object/component/*.scss";
-@import "./../object/global/*.scss";
-@import "./../object/page/top_pc.scss";
-@import "./../object/page/top_sp.scss";
+@import "./../object/project/*.scss";
+@import "./../object/page/top.scss";
 
 ////////// utility層 //////////
 ////////// 便利なスタイル
