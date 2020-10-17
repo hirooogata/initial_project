@@ -51,14 +51,16 @@
 > component、globalレイヤーについては <font color="red">**CSSクラス名(.c-more{}) == ファイル名(c-more.scss)**</font> （イコール）
 > 
 
+<br />
+
 ---
 
 <br />
 
 ## JS 設計（Babel環境でのトランスコンパイル）
 
-クラスとメソッドをしっかり分けて書くこと。
-[ES2015 チートシート](https://qiita.com/morrr/items/883cb902ccda37e840bc)
+クラスとメソッドをしっかり分けて書くこと。<br />
+[ES2015 チートシート](https://qiita.com/morrr/items/883cb902ccda37e840bc)<br />
 ※ 小～中規模開発の場合はgulpfile.jsのコメントアウトを切り替えて利用
 
 <br />
@@ -136,6 +138,8 @@ root
 ```
 > Foundation → Layout → Object → Utility
 > | 土台 → レイアウト → パーツ → 便利クラスの順
+
+<br />
 
 **CSSクラス名 命名規則（MindBEMding）**
 [BEM チートシート](https://9elements.com/bem-cheat-sheet/)
