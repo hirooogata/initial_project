@@ -46,7 +46,7 @@
 | **.c-** | Object     | **component**     | 再利用可能なコンポーネント     | ボタン、タイトル等   |
 | **.p-**| Object     | **projqct**      | componentの組み合わせ     | ヘッダー、フッダー等   |
 | - | Object    | **page**     | ページ毎    | トップページ、マイページ     |
-| **.u-** **.is-** | **Utility**     | -     | 便利クラス、状態クラス     | SP非表示、ボタンON状態等     |
+| **.u-** **.is-** | Object    | **Utility**    | 便利クラス、状態クラス     | SP非表示、ボタンON状態等     |
 
 > component、globalレイヤーについては <font color="red">**CSSクラス名(.c-more{}) == ファイル名(c-more.scss)**</font> （イコール）
 > 
