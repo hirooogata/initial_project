@@ -12,26 +12,29 @@
 → SEOでの検索順位が上がりずらい<br>
 → ページ離脱率が上がりやすい
 
+<br />
+
 **つまり..？**
 
 サイト設計は売上の土台となる重要なパートであり
 長く運用していくサイトでは最低限の設計をしておくべき:star:
 
+<br />
+
 ---
+
+<br />
 
 **利用方法**
 
 1.ソースコードをgithubから`git clone`<br>
 2.root直下で`npm install`
 
----
-
-## JS 設計（Babel環境でのトランスコンパイル）
-
-[ES2015 チートシート](https://qiita.com/morrr/items/883cb902ccda37e840bc)
-※ 小～中規模開発の場合はgulpfile.jsのコメントアウトを切り替えて利用
+<br />
 
 ---
+
+<br />
 
 ## CSS 設計（FLOCSS）
 
@@ -49,6 +52,20 @@
 > 
 
 ---
+
+<br />
+
+## JS 設計（Babel環境でのトランスコンパイル）
+
+クラスとメソッドをしっかり分けて書くこと。
+[ES2015 チートシート](https://qiita.com/morrr/items/883cb902ccda37e840bc)
+※ 小～中規模開発の場合はgulpfile.jsのコメントアウトを切り替えて利用
+
+<br />
+
+---
+
+<br />
 
 **ディレクトリ構成**
 
@@ -88,7 +105,11 @@ root
 └── top.html →                       初期HTML
 ```
 
+<br />
+
 ---
+
+<br />
 
 **レイヤーの読み込み順序（export 配下にファイルがあります）**
 
@@ -116,16 +137,17 @@ root
 > Foundation → Layout → Object → Utility
 > | 土台 → レイアウト → パーツ → 便利クラスの順
 
-## CSSクラス名 命名規則（MindBEMding）
+**CSSクラス名 命名規則（MindBEMding）**
 [BEM チートシート](https://9elements.com/bem-cheat-sheet/)
 
 > BEM（Block Element Modifier）。
 > 上記URLはBEMのチートシートです。
 
+<br />
+
 ## ビルド環境
 
 **gulp**（プロジェクトに合わせてWebpack等でも可）
-
 
 ```
 'use strict';
@@ -244,6 +266,7 @@ gulp.task('default', gulp.series('css.compile', 'css.minify', 'js.babel',
   })
 );
 ```
+<br />
 
 ## ファイル名 命名規則
 
