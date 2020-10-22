@@ -138,13 +138,14 @@ root
 
 <br />
 
-**CSSクラス名 命名規則（MindBEMding）**<br />
+**CSS 命名規則**<br />
+Block__Element--Modifier（MindBEMding）でコーディングする。<br />
 [BEM チートシート](https://9elements.com/bem-cheat-sheet/)
 
-> BEM（Block Element Modifier）。
-> 上記URLはBEMのチートシートです。
-
 <br />
+
+**JS 命名規則**<br />
+キャメルケースでコーディングする。<br />
 
 ## ビルド環境
 
@@ -282,6 +283,6 @@ gulp.task('default', gulp.series('css.compile', 'css.minify', 'js.babel',
 
 **html**<br>
 利用するテンプレートエンジンに合わせて`top.html`を改修
-EJS、Twig等の場合、上記のgulpで対応可能。
+Ejs、Twig等の場合、上記のgulpで対応可能。
 
 ※ xxは上から連番、{Block名}は **c-sample** みたいなやつ
