@@ -138,7 +138,7 @@ root
 
 <br />
 
-**CSSクラス名 命名規則（MindBEMding）**
+**CSSクラス名 命名規則（MindBEMding）**<br />
 [BEM チートシート](https://9elements.com/bem-cheat-sheet/)
 
 > BEM（Block Element Modifier）。
