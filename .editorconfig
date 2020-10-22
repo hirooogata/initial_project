@@ -6,11 +6,11 @@ root = true
 end_of_line = lf
 # 最終行に改行を追加する
 insert_final_newline = false
+#余分なスペースやタブなどを削除
+trim_trailing_whitespace = true
 # インデントスタイル
 indent_style = space
 # インデントサイズ
 indent_size = 2
 # 文字コード
 charset = utf-8
-#余分なスペースやタブなどを削除
-trim_trailing_whitespace = true
