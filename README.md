@@ -145,7 +145,7 @@ Block__Element--Modifier（MindBEMding）<br />
 
 <br />
 
-## IMG 命名規則
+## Img 命名規則
 
 **ファイル**<br>
 `/_src/img/{Block名}_xx.png`<br />
@@ -153,7 +153,7 @@ Block__Element--Modifier（MindBEMding）<br />
 
 <br />
 
-### HTML 命名規則
+#### ※ HTML
 
 **ファイル**<br>
 利用するテンプレートエンジンに合わせて`top.html`を改修<br />
