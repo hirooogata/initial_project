@@ -10,5 +10,4 @@ class Person {
   }
 }
 
-let profile = new Person('Mt.Ogata', '31');
-profile.voice();
+export default Person;
