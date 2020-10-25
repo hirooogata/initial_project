@@ -1,5 +1,7 @@
 ## なぜフロントエンドの設計が必要なのか？
 
+<br />
+
 **設計していないとデメリットが多い....**
 
 → 改修が複雑になりやすいため開発工数が増加する<br>
@@ -126,22 +128,51 @@ root
 ////////// 便利なスタイル
 @import "./../utility/*.scss";
 ```
-> Foundation → Layout → Object → Utility
+> 土台(Foundation) → Layout(レイアウト) → Object(パーツ) → Utility(便利クラス)の順
 <br />
 
-> 土台 → レイアウト → パーツ → 便利クラスの順
+## 命名規則
 
 <br />
 
-**CSS 命名規則**<br />
+### css
+
+**クラス**<br />
 Block__Element--Modifier（MindBEMding）<br />
 [BEM チートシート](https://9elements.com/bem-cheat-sheet/)
 
+**ファイル**<br>
+`上部ディレクトリ構成`参照
+
 <br />
 
-**JS 命名規則**<br />
+### Javascript
+
+**クラス**<br />
 キャメルケース<br />
 単語の短縮はしない<br />
+
+**ファイル**<br>
+`/_src/js/{ページタイトル}.js`
+
+<br />
+
+### image
+
+**ファイル名**<br>
+`/_src/img/{Block名}_xx.png`
+<br />
+
+
+### html
+
+**ファイル名**<br>
+利用するテンプレートエンジンに合わせて`top.html`を改修
+ejs、twig等の場合、上記のgulpで対応可能。
+
+※ xxは上から連番、{Block名}は **c-sample** みたいなやつ
+
+<br />
 
 ## ビルド環境
 
@@ -276,21 +307,3 @@ gulp.task('default', gulp.series('css.compile', 'css.minify', 'js.browserify',
   })
 );
 ```
-<br />
-
-## ファイル名 命名規則
-
-**css**<br>
-`上部ディレクトリ構成`参照
-
-**Javascript**<br>
-`/_src/js/{ページタイトル}.js`
-
-**img**<br>
-`/_src/img/{Block名}_xx.png`
-
-**html**<br>
-利用するテンプレートエンジンに合わせて`top.html`を改修
-Ejs、Twig等の場合、上記のgulpで対応可能。
-
-※ xxは上から連番、{Block名}は **c-sample** みたいなやつ
