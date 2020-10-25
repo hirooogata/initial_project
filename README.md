@@ -131,11 +131,7 @@ root
 > 土台(Foundation) → Layout(レイアウト) → Object(パーツ) → Utility(便利クラス)の順
 <br />
 
-## 命名規則
-
-<br />
-
-### CSS
+## CSS 命名規則
 
 **クラス**<br />
 Block__Element--Modifier（MindBEMding）<br />
@@ -146,7 +142,7 @@ Block__Element--Modifier（MindBEMding）<br />
 
 <br />
 
-### JAVASCRIPT
+## JS 命名規則
 
 **クラス**<br />
 キャメルケース<br />
@@ -157,12 +153,12 @@ Block__Element--Modifier（MindBEMding）<br />
 
 <br />
 
-### IMAGE
+## IMG 命名規則
 
 **ファイル名**<br>
 `/_src/img/{Block名}_xx.png`
-<br />
 
+<br />
 
 ### HTML
 
