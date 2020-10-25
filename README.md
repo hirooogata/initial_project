@@ -54,11 +54,10 @@
 
 <br />
 
-## JS 設計（Babel環境でのトランスコンパイル）
-
+## JS 設計（ECMAScript 2015）
+Babelでのトランスコンパイル<br />
 クラス、メソッドをしっかり分けて、継承を心掛けて書くこと。<br />
 [ES2015 チートシート](https://qiita.com/morrr/items/883cb902ccda37e840bc)<br />
-※ 小～中規模開発の場合はgulpfile.jsのコメントアウトを切り替えて利用
 
 <br />
 
