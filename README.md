@@ -16,7 +16,7 @@
 
 **つまり..？**
 
-サイト設計は売上の土台となる重要なパートであり
+サイト設計は売上の土台となる重要なパートであり<br />
 長く運用していくサイトでは最低限の設計をしておくべき:star:
 
 <br />
@@ -56,7 +56,7 @@
 
 ## JS 設計（Babel環境でのトランスコンパイル）
 
-クラスとメソッドをしっかり分けて書くこと。<br />
+クラス、メソッドをしっかり分けて、継承を心掛けて書くこと。<br />
 [ES2015 チートシート](https://qiita.com/morrr/items/883cb902ccda37e840bc)<br />
 ※ 小～中規模開発の場合はgulpfile.jsのコメントアウトを切り替えて利用
 
@@ -136,18 +136,21 @@ root
 @import "./../utility/*.scss";
 ```
 > Foundation → Layout → Object → Utility
-> | 土台 → レイアウト → パーツ → 便利クラスの順
+<br />
+
+> 土台 → レイアウト → パーツ → 便利クラスの順
 
 <br />
 
 **CSS 命名規則**<br />
-Block__Element--Modifier（MindBEMding）でコーディングする。<br />
+Block__Element--Modifier（MindBEMding）<br />
 [BEM チートシート](https://9elements.com/bem-cheat-sheet/)
 
 <br />
 
 **JS 命名規則**<br />
-キャメルケースでコーディングする。<br />
+キャメルケース<br />
+単語の短縮はしない<br />
 
 ## ビルド環境
 
