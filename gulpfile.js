@@ -86,13 +86,14 @@ gulp.task('js.browserify', function(done) {
 });
 
 /*---------- img ----------*/
-gulp.task('img.minify', function() {
+gulp.task('img.minify', function(done) {
   gulp.src([editDirectory.img + '*.png', editDirectory.img + '*.jpg'])
   .pipe(imagemin([pngquant({quality: [0.6, 0.9]})]))
   .pipe(gulp.dest(destDirectory.img)),
   gulp.src(editDirectory.img + '*.svg')
   .pipe(svgmin())
   .pipe(gulp.dest(destDirectory.img));
+  done();
 });
 
 /*---------- sync ----------*/
