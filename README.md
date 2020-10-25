@@ -72,7 +72,9 @@
 root
 ├── _src
 │  　├── img →                      ページ毎
-│  　├── js ── es2015 →             ページ毎
+│  　├── js →                       ページ毎（es2015を利用する場合、利用しない）
+│  　├── es →                       ページ毎
+│  　│     └── module →             クラス毎にファイル分け（クラス名.js） 
 │  　└── scss 
 │  　  　 　├── foundation →         土台（base.scss）、リセット（reset.scss）
 │  　  　 　├── layout →             レイアウト（l-xxxx.scss）
@@ -91,7 +93,7 @@ root
 │
 ├── src
 │   　├── img →                      xxxx_zz.png, yyyy_zz.svg（圧縮済）
-│   　├── js →                       xxxx.min.js
+│   　├── js →                       xxxx.js
 │   　├── css →                      xxxx.min.css
 │   　└── lib →                      jQuery等 ライブラリ関連
 │
@@ -170,6 +172,9 @@ const plumber = require('gulp-plumber');
 const bulkSass = require('gulp-sass-bulk-import');
 const browserSync = require('browser-sync'); 
 const babel = require("gulp-babel");
+const browserify = require('browserify');
+const babelify = require('babelify');
+const source = require('vinyl-source-stream');
 const cssPlugin = [
   autoprefixer({cascade: false}),
   cssDeclarationSorter({order: 'smacss'}),
@@ -181,7 +186,7 @@ const editDirectory = {
   html: './',
   scss: './_src/scss/**/',
   js: './_src/js/',
-  es: './_src/js/es2015/',
+  es: './_src/es/',
   img: './_src/img/'
 }
 const destDirectory = {
@@ -217,12 +222,21 @@ gulp.task('css.minify', function () {
 //   .pipe(rename({extname: '.min.js'}))
 //   .pipe(gulp.dest(destDirectory.js));
 // });
-gulp.task('js.babel', function(done) {
-  gulp.src(editDirectory.js + 'es2015/*.js')
-    .pipe(plumber())
-    .pipe(babel())
-    .pipe(rename({extname: '.min.js'}))
-    .pipe(uglify({output: {comments: 'some'}}))
+
+// ここの処理を正規表現などでやりたい
+gulp.task('js.browserify', function(done) {
+　　browserify([editDirectory.es + 'top.js'] , {debug: true})
+    .transform(babelify)
+    .bundle()
+    .on("error", function(err){console.log("Error : " + err.message);})
+    .pipe(source('top.js'))
+    .pipe(gulp.dest(destDirectory.js)),
+
+    browserify([editDirectory.es + 'contact.js'] , {debug: true})
+    .transform(babelify)
+    .bundle()
+    .on("error", function(err){console.log("Error : " + err.message);})
+    .pipe(source('contact.js'))
     .pipe(gulp.dest(destDirectory.js));
     done();
 });
@@ -256,13 +270,13 @@ gulp.task('files.watch', function(done) {
   gulp.watch([editDirectory.html + '*.html'], gulp.series('browser.reload'));
   gulp.watch([editDirectory.scss + '*.scss', './_src/scss/*.scss'], gulp.series('css.compile', 'css.minify',  'browser.reload'));
   // gulp.watch([editDirectory.js + '*.js'], gulp.series('js.minify', 'browser.reload'));
-  gulp.watch([editDirectory.es + '*.js'], gulp.series('js.babel', 'browser.reload'));
+  gulp.watch([editDirectory.es + '*.js'], gulp.series('js.browserify', 'browser.reload'));
   gulp.watch([editDirectory.img + '*.png', editDirectory.img + '*.jpg', editDirectory.img + '*.svg'], gulp.series('img.minify', 'browser.reload'));
   done();
 });
 
 /*---------- default ----------*/
-gulp.task('default', gulp.series('css.compile', 'css.minify', 'js.babel', 
+gulp.task('default', gulp.series('css.compile', 'css.minify', 'js.browserify', 
   gulp.parallel('files.watch', 'browser.sync'), function(done) {
     done();
   })
