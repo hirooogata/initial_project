@@ -196,6 +196,12 @@ const destDirectory = {
   img: './src/img/'
 }
 
+/*---------- filename ----------*/
+const fileNameList = [
+  'top',
+  'contact'
+]
+
 /*---------- scss ----------*/
 gulp.task('css.compile', function () {
   return gulp.src('./_src/scss/export/*.scss')
@@ -223,22 +229,16 @@ gulp.task('css.minify', function () {
 //   .pipe(gulp.dest(destDirectory.js));
 // });
 
-// ここの処理を正規表現などでやりたい
 gulp.task('js.browserify', function(done) {
-　　browserify([editDirectory.es + 'top.js'] , {debug: true})
+  for(let i=0; i<fileNameList.length; i++){
+ 　browserify([editDirectory.es + fileNameList[i] + '.js'] , {debug: true})
     .transform(babelify)
     .bundle()
     .on("error", function(err){console.log("Error : " + err.message);})
-    .pipe(source('top.js'))
-    .pipe(gulp.dest(destDirectory.js)),
-
-    browserify([editDirectory.es + 'contact.js'] , {debug: true})
-    .transform(babelify)
-    .bundle()
-    .on("error", function(err){console.log("Error : " + err.message);})
-    .pipe(source('contact.js'))
-    .pipe(gulp.dest(destDirectory.js));
-    done();
+    .pipe(source(fileNameList[i] + '.js'))
+    .pipe(gulp.dest(destDirectory.js))
+  }
+   done();
 });
 
 /*---------- img ----------*/
