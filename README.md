@@ -135,7 +135,7 @@ root
 
 <br />
 
-### css
+### CSS
 
 **クラス**<br />
 Block__Element--Modifier（MindBEMding）<br />
@@ -146,7 +146,7 @@ Block__Element--Modifier（MindBEMding）<br />
 
 <br />
 
-### Javascript
+### JAVASCRIPT
 
 **クラス**<br />
 キャメルケース<br />
@@ -157,14 +157,14 @@ Block__Element--Modifier（MindBEMding）<br />
 
 <br />
 
-### image
+### IMAGE
 
 **ファイル名**<br>
 `/_src/img/{Block名}_xx.png`
 <br />
 
 
-### html
+### HTML
 
 **ファイル名**<br>
 利用するテンプレートエンジンに合わせて`top.html`を改修
