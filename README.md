@@ -101,11 +101,7 @@ root
 
 <br />
 
----
-
-<br />
-
-**レイヤーの読み込み順序（export 配下にファイルがあります）**
+## レイヤーの読み込み順序（export 配下にファイルがあります）
 
 ```:\_src\scss\export\top.scss
 
@@ -155,18 +151,17 @@ Block__Element--Modifier（MindBEMding）<br />
 
 ## IMG 命名規則
 
-**ファイル名**<br>
-`/_src/img/{Block名}_xx.png`
+**ファイル**<br>
+`/_src/img/{Block名}_xx.png`<br />
+※ xxは上から連番、{Block名}は **c-sample** みたいなやつ
 
 <br />
 
-### HTML
+### HTML 命名規則
 
-**ファイル名**<br>
-利用するテンプレートエンジンに合わせて`top.html`を改修
+**ファイル**<br>
+利用するテンプレートエンジンに合わせて`top.html`を改修<br />
 ejs、twig等の場合、上記のgulpで対応可能。
-
-※ xxは上から連番、{Block名}は **c-sample** みたいなやつ
 
 <br />
 
