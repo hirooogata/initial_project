@@ -27,7 +27,7 @@ const editDirectory = {
   html: './',
   scss: './_src/scss/**/',
   js: './_src/js/',
-  es: './_src/js/es2015/',
+  es: './_src/js/es/',
   img: './_src/img/'
 }
 const destDirectory = {
@@ -64,7 +64,7 @@ gulp.task('css.minify', function () {
 //   .pipe(gulp.dest(destDirectory.js));
 // });
 gulp.task('js.babel', function(done) {
-  gulp.src(editDirectory.js + 'es2015/*.js')
+  gulp.src(editDirectory.js + 'es/*.js')
     .pipe(plumber())
     .pipe(babel())
     .pipe(rename({extname: '.min.js'}))
