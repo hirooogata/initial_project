@@ -56,7 +56,7 @@
 <br />
 
 ## JS 設計（ECMAScript 2015）
-Babelでのトランスコンパイル<br />
+Babelでのトランスパイル<br />
 クラス、メソッドをしっかり分けて、継承を心掛けて書くこと。<br />
 [ES2015 チートシート](https://qiita.com/morrr/items/883cb902ccda37e840bc)<br />
 
