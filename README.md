@@ -57,8 +57,41 @@
 
 ## JS 設計（ECMAScript 2015）
 Babelでのトランスパイル<br />
-クラス、メソッドをしっかり分けて、継承を心掛けて書くこと。<br />
+クラス、メソッドをしっかり分ける<br />
+クラスの継承を心掛ける<br />
 [ES2015 チートシート](https://qiita.com/morrr/items/883cb902ccda37e840bc)<br />
+
+**継承**
+```::/_src/es/module/Parent.js
+
+class Parent {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  profile() {
+    console.log(this.name + "です。" + this.age + "歳です。");
+  }
+}
+
+class Child extends Parent {
+  constructor(name) {
+    super(name, 31);
+  }
+}
+
+export { Child };
+
+```
+
+```::/_src/es/main.js
+
+import { Child } from './module/Parent';
+
+let profile = new Child("太郎");
+profile.profile();
+
+```
 
 <br />
 
@@ -68,7 +101,7 @@ Babelでのトランスパイル<br />
 root
 ├── _src
 │  　├── img →                      ページ毎
-│  　├── js →                       ページ毎（es2015を利用する場合、フォルダ削除）
+│  　├── js →                       ページ毎（es6を利用する場合、フォルダ削除）
 │  　├── es →                       ページ毎
 │  　│     └── module →             クラス毎にファイル分け（クラス名.js） 
 │  　└── scss 
