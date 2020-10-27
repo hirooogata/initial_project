@@ -19,32 +19,41 @@ const babel = require("gulp-babel");
 const browserify = require('browserify');
 const babelify = require('babelify');
 const source = require('vinyl-source-stream');
+const ejs = require("gulp-ejs");
 const cssPlugin = [
   autoprefixer({cascade: false}),
   cssDeclarationSorter({order: 'smacss'}),
   mqpacker()
 ];
+const fileNameList = [
+  'top',
+  'contact'
+]
 
 /*---------- directory ----------*/
 const editDirectory = {
-  html: './',
+  ejs: './_src/html/**/',
   scss: './_src/scss/**/',
   js: './_src/js/',
   es: './_src/es/',
   img: './_src/img/'
 }
 const destDirectory = {
+  ejs: './src/html/',
   css: './src/css/diff/',
   minifyCss: './src/css/',
   js: './src/js/',
   img: './src/img/'
 }
 
-/*---------- filename ----------*/
-const fileNameList = [
-  'top',
-  'contact'
-]
+/*---------- ejs ----------*/
+gulp.task("js.ejs", function(done) {
+  gulp.src([editDirectory.ejs + '*.ejs', '!./_src/html/module/*.ejs'])
+  .pipe(ejs())
+  .pipe(rename({extname: '.html'}))
+  .pipe(gulp.dest(destDirectory.ejs));
+  done();
+ });
 
 /*---------- scss ----------*/
 gulp.task('css.compile', function () {
@@ -65,14 +74,6 @@ gulp.task('css.minify', function () {
 });
 
 /*---------- js ----------*/
-// gulp.task('js.minify', function() {
-//   return gulp.src(editDirectory.js + '*.js')
-//   .pipe(plumber())
-//   .pipe(uglify({output: {comments: 'some'}}))
-//   .pipe(rename({extname: '.min.js'}))
-//   .pipe(gulp.dest(destDirectory.js));
-// });
-
 gulp.task('js.browserify', function(done) {
   for(let i=0; i<fileNameList.length; i++){
  　browserify([editDirectory.es + fileNameList[i] + '.js'] , {debug: true})
@@ -84,6 +85,13 @@ gulp.task('js.browserify', function(done) {
   }
    done();
 });
+// gulp.task('js.minify', function() {
+//   return gulp.src(editDirectory.js + '*.js')
+//   .pipe(plumber())
+//   .pipe(uglify({output: {comments: 'some'}}))
+//   .pipe(rename({extname: '.min.js'}))
+//   .pipe(gulp.dest(destDirectory.js));
+// });
 
 /*---------- img ----------*/
 gulp.task('img.minify', function(done) {
@@ -99,7 +107,7 @@ gulp.task('img.minify', function(done) {
 /*---------- sync ----------*/
 gulp.task('browser.sync', function(done) {
   browserSync.init({
-      server : {baseDir : './', index : 'top.html'}
+    server : {baseDir : './src/html/', index : 'top.html'}
   });
   done();
 });
@@ -112,16 +120,17 @@ gulp.task('browser.reload', function(done) {
 
 /*---------- watch ----------*/
 gulp.task('files.watch', function(done) {
-  gulp.watch([editDirectory.html + '*.html'], gulp.series('browser.reload'));
+  gulp.watch([editDirectory.ejs + '*.html'], gulp.series('browser.reload'));
+  gulp.watch([editDirectory.ejs + '*.js'], gulp.series('js.ejs'));
   gulp.watch([editDirectory.scss + '*.scss', './_src/scss/*.scss'], gulp.series('css.compile', 'css.minify',  'browser.reload'));
-  // gulp.watch([editDirectory.js + '*.js'], gulp.series('js.minify', 'browser.reload'));
   gulp.watch([editDirectory.es + '*.js'], gulp.series('js.browserify', 'browser.reload'));
   gulp.watch([editDirectory.img + '*.png', editDirectory.img + '*.jpg', editDirectory.img + '*.svg'], gulp.series('img.minify', 'browser.reload'));
+  // gulp.watch([editDirectory.js + '*.js'], gulp.series('js.minify', 'browser.reload'));
   done();
 });
 
 /*---------- default ----------*/
-gulp.task('default', gulp.series('css.compile', 'css.minify', 'js.browserify', 
+gulp.task('default', gulp.series('js.ejs', 'css.compile', 'css.minify', 'js.browserify',
   gulp.parallel('files.watch', 'browser.sync'), function(done) {
     done();
   })

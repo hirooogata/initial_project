@@ -41,6 +41,21 @@
 
 <br />
 
+## HTML 設計（EJS）
+
+**各パーツの役割**
+| ファイル名 | 詳細ディレクトリ | 役割 |
+| -------- | -------- | -------- |
+| meta.ejs | module | meta情報 |
+| common.ejs | module | 共通 |
+| header.ejs | module | ヘッダー |
+| footer.ejs | module | フッター |
+| sidebar.ejs | module | サイドバー |
+
+※ テンプレートエンジンはお好みで変更
+
+<br />
+
 ## CSS 設計（FLOCSS）
 
 **各レイヤーの役割**
@@ -62,7 +77,8 @@ Babelでのトランスパイル<br />
 [ES2015 チートシート](https://qiita.com/morrr/items/883cb902ccda37e840bc)<br />
 
 **継承**
-```::/_src/es/module/Parent.js
+```
+<呼び出し元>
 
 class Parent {
   constructor(name, age) {
@@ -80,13 +96,15 @@ class Child extends Parent {
   }
 }
 
-export { Child };
+export {Child};
 
 ```
 
-```::/_src/es/main.js
+```
 
-import { Child } from './module/Parent';
+<呼び出し先>
+
+import {Child} from './module/Parent';
 
 let profile = new Child("太郎");
 profile.profile();
@@ -100,30 +118,34 @@ profile.profile();
 ```
 root
 ├── _src
-│  　├── img →                      ページ毎
-│  　├── js →                       ページ毎（es6を利用する場合、フォルダ削除）
-│  　├── es →                       ページ毎
-│  　│     └── module →             クラス毎にファイル分け（クラス名.js） 
-│  　└── scss 
-│  　  　 　├── foundation →         土台（base.scss）、リセット（reset.scss）
-│  　  　 　├── layout →             レイアウト（l-xxxx.scss）
-│  　  　 　├── object 
-│  　  　 　│  　   　├── component → サイト内で３回以上使われる最小限パーツ（c-xxxx.scss）
-│  　  　 　│  　   　├── project →   サイト内で３回以上使われるcomponentの組み合わせ（p-xxxx.scss）
-│  　  　 　│  　   　├── utility →   ユーティリティ（u-xxxx.scss）
-│  　  　 　│  　   　└── page    →   ページ毎（xxxx.scss）
-│  　  　 　│
-│  　  　 　├── import →             変数（_variables.scss）、関数（_mixin.scss）
-│  　  　 　└── export →             出力用
+│  　├── html →                       ページ毎（xxxx.ejs） 
+│  　│     └── module →               パーツ毎にファイル分け 
+│  　├── js →                         ページ毎（jQueryの場合利用）
+│  　├── es →                         ページ毎
+│  　│     └── module →               クラス毎にファイル分け（クラス名.js） 
+│  　├── scss 
+│  　│  　 　├── foundation →         土台（base.scss）、リセット（reset.scss）
+│  　│  　 　├── layout →             レイアウト（l-xxxx.scss）
+│  　│  　 　├── object 
+│  　│  　 　│  　   　├── component → サイト内で3回以上使われる最小限パーツ（c-xxxx.scss）
+│  　│  　 　│  　   　├── project →   サイト内で3回以上使われるcomponentの組み合わせ（p-xxxx.scss）
+│  　│  　 　│  　   　├── utility →   ユーティリティ（u-xxxx.scss）
+│  　│  　 　│  　   　└── page    →   ページ毎（xxxx.scss）
+│  　│  　 　│
+│  　│  　 　├── import →             変数（_variables.scss）、関数（_mixin.scss）
+│  　│  　 　└── export →             出力用
+│  　│
+│  　└── img →                        ページ毎
 │
 │　↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 │　↓↓↓↓↓↓↓ ファイルを更新するとsrc配下に自動ビルド ↓↓↓↓↓↓↓↓↓
 │　↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 │
 ├── src
-│   　├── img →                      xxxx_zz.png, yyyy_zz.svg（圧縮済）
-│   　├── js →                       xxxx.js
+│   　├── html →                     xxxx.html
 │   　├── css →                      xxxx.min.css
+│   　├── js →                       xxxx.js
+│   　├── img →                      xxxx_zz.png, yyyy_zz.svg（圧縮済）
 │   　└── lib →                      jQuery等 ライブラリ関連
 │
 │　↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
@@ -132,14 +154,16 @@ root
 ├── gulpfile.js →                    ビルド処理本体
 ├── pacage.json →                    パッケージマネージャー
 ├── pacage-lock.json →               npm install時に完全に同じ環境を構築するため
-└── top.html →                       初期HTML
+├── .babelrc →                     　babel設定
+├── .editorconfig →                  エディタ設定
+└── .gitignore →                     gitで無視するリスト
 ```
 
 <br />
 
 ### レイヤーの読み込み順序（export 配下にファイルがあります）
 
-```:\_src\scss\export\top.scss
+```
 
 ////////// foundation層 //////////
 ////////// 土台となるスタイル
@@ -159,6 +183,7 @@ root
 ////////// utility層 //////////
 ////////// 便利なスタイル
 @import "./../utility/*.scss";
+
 ```
 > 土台(foundation) → レイアウト(layout) → パーツ(object) → 便利クラス(utility)の順
 <br />
@@ -178,7 +203,7 @@ Block__Element--Modifier（MindBEMding）<br />
 
 **クラス**<br />
 キャメルケース<br />
-単語の短縮はしない<br />
+単語は省略しない<br />
 
 **ファイル**<br>
 `/_src/js/{ページタイトル}.js`
@@ -193,31 +218,24 @@ Block__Element--Modifier（MindBEMding）<br />
 
 <br />
 
-#### ※ HTML
-
-**ファイル**<br>
-利用するテンプレートエンジンに合わせて`top.html`を改修<br />
-ejs、twig等の場合、上記のgulpで対応可能。
-
-<br />
-
 ## ビルド環境
 
 <br />
 
 **やってること**<br />
 
-01.scssのコンパイル<br />
-02.cssのコード圧縮<br />
-03.cssのブラウザ対応<br />
-04.cssプロパティの整頓<br />
-05.cssファイルのバンドル<br />
-06.cssメディアクエリのバンドル<br />
-07.ES2015のコンパイル<br />
-08.jsのコード圧縮<br />
-09.imgの圧縮<br />
-10.全てのファイルの監視<br />
-11.ライブリロード(ブラウザの自動更新)<br />
+01.ejsのコンパイル<br />
+02.scssのコンパイル<br />
+03.cssのコード圧縮<br />
+04.cssのブラウザ対応<br />
+05.cssプロパティの整頓<br />
+06.cssファイルのバンドル<br />
+07.cssメディアクエリのバンドル<br />
+08.ES2015のコンパイル<br />
+09.jsのコード圧縮<br />
+10.imgの圧縮<br />
+11.全ファイルの監視<br />
+12.ライブリロード(ブラウザの自動更新)<br />
 
 <br />
 
@@ -245,32 +263,41 @@ const babel = require("gulp-babel");
 const browserify = require('browserify');
 const babelify = require('babelify');
 const source = require('vinyl-source-stream');
+const ejs = require("gulp-ejs");
 const cssPlugin = [
   autoprefixer({cascade: false}),
   cssDeclarationSorter({order: 'smacss'}),
   mqpacker()
 ];
+const fileNameList = [
+  'top',
+  'contact'
+]
 
 /*---------- directory ----------*/
 const editDirectory = {
-  html: './',
+  ejs: './_src/html/**/',
   scss: './_src/scss/**/',
   js: './_src/js/',
   es: './_src/es/',
   img: './_src/img/'
 }
 const destDirectory = {
+  ejs: './src/html/',
   css: './src/css/diff/',
   minifyCss: './src/css/',
   js: './src/js/',
   img: './src/img/'
 }
 
-/*---------- filename ----------*/
-const fileNameList = [
-  'top',
-  'contact'
-]
+/*---------- ejs ----------*/
+gulp.task("js.ejs", function(done) {
+  gulp.src([editDirectory.ejs + '*.ejs', '!./_src/html/module/*.ejs'])
+  .pipe(ejs())
+  .pipe(rename({extname: '.html'}))
+  .pipe(gulp.dest(destDirectory.ejs));
+  done();
+ });
 
 /*---------- scss ----------*/
 gulp.task('css.compile', function () {
@@ -291,14 +318,6 @@ gulp.task('css.minify', function () {
 });
 
 /*---------- js ----------*/
-// gulp.task('js.minify', function() {
-//   return gulp.src(editDirectory.js + '*.js')
-//   .pipe(plumber())
-//   .pipe(uglify({output: {comments: 'some'}}))
-//   .pipe(rename({extname: '.min.js'}))
-//   .pipe(gulp.dest(destDirectory.js));
-// });
-
 gulp.task('js.browserify', function(done) {
   for(let i=0; i<fileNameList.length; i++){
  　browserify([editDirectory.es + fileNameList[i] + '.js'] , {debug: true})
@@ -310,21 +329,29 @@ gulp.task('js.browserify', function(done) {
   }
    done();
 });
+// gulp.task('js.minify', function() {
+//   return gulp.src(editDirectory.js + '*.js')
+//   .pipe(plumber())
+//   .pipe(uglify({output: {comments: 'some'}}))
+//   .pipe(rename({extname: '.min.js'}))
+//   .pipe(gulp.dest(destDirectory.js));
+// });
 
 /*---------- img ----------*/
-gulp.task('img.minify', function() {
+gulp.task('img.minify', function(done) {
   gulp.src([editDirectory.img + '*.png', editDirectory.img + '*.jpg'])
   .pipe(imagemin([pngquant({quality: [0.6, 0.9]})]))
   .pipe(gulp.dest(destDirectory.img)),
   gulp.src(editDirectory.img + '*.svg')
   .pipe(svgmin())
   .pipe(gulp.dest(destDirectory.img));
+  done();
 });
 
 /*---------- sync ----------*/
 gulp.task('browser.sync', function(done) {
   browserSync.init({
-      server : {baseDir : './', index : 'top.html'}
+    server : {baseDir : './src/html/', index : 'top.html'}
   });
   done();
 });
@@ -337,16 +364,17 @@ gulp.task('browser.reload', function(done) {
 
 /*---------- watch ----------*/
 gulp.task('files.watch', function(done) {
-  gulp.watch([editDirectory.html + '*.html'], gulp.series('browser.reload'));
+  gulp.watch([editDirectory.ejs + '*.html'], gulp.series('browser.reload'));
+  gulp.watch([editDirectory.ejs + '*.js'], gulp.series('js.ejs'));
   gulp.watch([editDirectory.scss + '*.scss', './_src/scss/*.scss'], gulp.series('css.compile', 'css.minify',  'browser.reload'));
-  // gulp.watch([editDirectory.js + '*.js'], gulp.series('js.minify', 'browser.reload'));
   gulp.watch([editDirectory.es + '*.js'], gulp.series('js.browserify', 'browser.reload'));
   gulp.watch([editDirectory.img + '*.png', editDirectory.img + '*.jpg', editDirectory.img + '*.svg'], gulp.series('img.minify', 'browser.reload'));
+  // gulp.watch([editDirectory.js + '*.js'], gulp.series('js.minify', 'browser.reload'));
   done();
 });
 
 /*---------- default ----------*/
-gulp.task('default', gulp.series('css.compile', 'css.minify', 'js.browserify', 
+gulp.task('default', gulp.series('js.ejs', 'css.compile', 'css.minify', 'js.browserify',
   gulp.parallel('files.watch', 'browser.sync'), function(done) {
     done();
   })
