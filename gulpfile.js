@@ -86,6 +86,7 @@ gulp.task('js.browserify', function(done) {
    done();
 });
 
+
 // gulp.task('js.minify', function() {
 //   return gulp.src(editDirectory.js + '*.js')
 //   .pipe(plumber())
