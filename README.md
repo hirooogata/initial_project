@@ -240,7 +240,7 @@ Block__Element--Modifier（MindBEMding）<br />
 
 <br />
 
-**gulp**（プロジェクトに合わせてWebpack等でも可）<br />
+**gulpfile.js**（プロジェクトに合わせてWebpack等でも可）<br />
 
 ```
 'use strict';
